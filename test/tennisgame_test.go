@@ -17,7 +17,7 @@ func TestSuiteInit(t *testing.T) {
 }
 
 func (t *TennisGameTestSuite) SetupTest() {
-	t.TennisGame = tennisgame.NewTennisGame()
+	t.TennisGame = tennisgame.NewTennisGame("Joey", "Tom")
 }
 
 func (t TennisGameTestSuite) Test_LoveAll() {
@@ -62,9 +62,25 @@ func (t TennisGameTestSuite) Test_ThirtyAll() {
 }
 
 func (t TennisGameTestSuite) Test_Deuce() {
+	t.GivenDeuce()
+	t.ScoreShouldBe("Deuce")
+}
+
+func (t TennisGameTestSuite) Test_FirstPlayerAdv() {
+	t.GivenDeuce()
+	t.GivenFirstPlayerScore(1)
+	t.ScoreShouldBe("Joey Adv")
+}
+
+func (t TennisGameTestSuite) Test_SecondPlayerAdv() {
+	t.GivenDeuce()
+	t.GivenSecondPlayerScore(1)
+	t.ScoreShouldBe("Tom Adv")
+}
+
+func (t TennisGameTestSuite) GivenDeuce() {
 	t.GivenFirstPlayerScore(3)
 	t.GivenSecondPlayerScore(3)
-	t.ScoreShouldBe("Deuce")
 }
 
 func (t TennisGameTestSuite) GivenSecondPlayerScore(times int) {

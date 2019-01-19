@@ -1,8 +1,12 @@
 package tennisgame
 
+import "math"
+
 type TennisGame struct {
 	firstPlayerScoreTimes  int
 	secondPlayerScoreTimes int
+	firstPlayerName        string
+	secondPlayerName       string
 }
 
 var lookup = map[int]string{
@@ -14,6 +18,15 @@ var lookup = map[int]string{
 
 func (game TennisGame) Score() string {
 	if game.firstPlayerScoreTimes != game.secondPlayerScoreTimes {
+		player := game.firstPlayerName
+		if game.firstPlayerScoreTimes < game.secondPlayerScoreTimes {
+			player = game.secondPlayerName
+		}
+		if game.firstPlayerScoreTimes > 3 || game.secondPlayerScoreTimes > 3 {
+			if math.Abs(float64(game.firstPlayerScoreTimes-game.secondPlayerScoreTimes)) == 1 {
+				return player + " Adv"
+			}
+		}
 		return lookup[game.firstPlayerScoreTimes] + " " + lookup[game.secondPlayerScoreTimes]
 	}
 
@@ -31,6 +44,6 @@ func (game *TennisGame) SecondPlayerScore() {
 	game.secondPlayerScoreTimes++
 }
 
-func NewTennisGame() *TennisGame {
-	return &TennisGame{}
+func NewTennisGame(firstPlayerName, secondPlayerName string) *TennisGame {
+	return &TennisGame{firstPlayerName: firstPlayerName, secondPlayerName: secondPlayerName}
 }
