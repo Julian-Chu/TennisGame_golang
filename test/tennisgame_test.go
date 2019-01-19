@@ -21,6 +21,9 @@ func (t *TennisGameTestSuite) SetupTest() {
 }
 
 func (t TennisGameTestSuite) Test_LoveAll() {
-	assert.Equal(t.T(), "Love All", t.TennisGame.Score(), "")
+	t.ScoreShouldBe("Love All")
+}
 
+func (t TennisGameTestSuite) ScoreShouldBe(expected string) bool {
+	return assert.Equal(t.T(), expected, t.TennisGame.Score(), "")
 }
