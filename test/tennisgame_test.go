@@ -39,6 +39,11 @@ func (t TennisGameTestSuite) Test_FiftyLove() {
 	t.ScoreShouldBe("Fifty Love")
 }
 
+func (t TennisGameTestSuite) Test_LoveFifteen() {
+	t.TennisGame.SecondPlayerScore()
+	t.ScoreShouldBe("Love Fifteen")
+}
+
 func (t TennisGameTestSuite) GivenFirstPlayerScore(times int) {
 	for i := 0; i < times; i++ {
 		t.TennisGame.FirstPlayerScore()
