@@ -61,6 +61,12 @@ func (t TennisGameTestSuite) Test_ThirtyAll() {
 	t.ScoreShouldBe("Thirty All")
 }
 
+func (t TennisGameTestSuite) Test_Deuce() {
+	t.GivenFirstPlayerScore(3)
+	t.GivenSecondPlayerScore(3)
+	t.ScoreShouldBe("Deuce")
+}
+
 func (t TennisGameTestSuite) GivenSecondPlayerScore(times int) {
 	for i := 0; i < times; i++ {
 		t.TennisGame.SecondPlayerScore()
