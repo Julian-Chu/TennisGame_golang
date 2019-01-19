@@ -30,9 +30,14 @@ func (t TennisGameTestSuite) Test_FifteenLove() {
 }
 
 func (t TennisGameTestSuite) Test_ThirtyLove() {
-	t.TennisGame.FirstPlayerScore()
-	t.TennisGame.FirstPlayerScore()
+	t.GivenFirstPlayerScore(2)
 	t.ScoreShouldBe("Thirty Love")
+}
+
+func (t TennisGameTestSuite) GivenFirstPlayerScore(times int) {
+	for i := 0; i < times; i++ {
+		t.TennisGame.FirstPlayerScore()
+	}
 }
 
 func (t TennisGameTestSuite) ScoreShouldBe(expected string) bool {
