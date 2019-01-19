@@ -85,6 +85,12 @@ func (t TennisGameTestSuite) Test_Deuce44() {
 	t.ScoreShouldBe("Deuce")
 }
 
+func (t TennisGameTestSuite) Test_FirstPlayerWin() {
+	t.GivenDeuce()
+	t.GivenFirstPlayerScore(2)
+	t.ScoreShouldBe("Joey Win")
+}
+
 func (t TennisGameTestSuite) GivenDeuce() {
 	t.GivenFirstPlayerScore(3)
 	t.GivenSecondPlayerScore(3)
