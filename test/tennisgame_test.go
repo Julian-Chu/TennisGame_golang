@@ -29,6 +29,12 @@ func (t TennisGameTestSuite) Test_FifteenLove() {
 	t.ScoreShouldBe("Fifteen Love")
 }
 
+func (t TennisGameTestSuite) Test_ThirtyLove() {
+	t.TennisGame.FirstPlayerScore()
+	t.TennisGame.FirstPlayerScore()
+	t.ScoreShouldBe("Thirty Love")
+}
+
 func (t TennisGameTestSuite) ScoreShouldBe(expected string) bool {
 	return assert.Equal(t.T(), expected, t.TennisGame.Score(), "")
 }
