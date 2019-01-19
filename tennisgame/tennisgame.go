@@ -7,10 +7,11 @@ type TennisGame struct {
 var lookup = map[int]string{
 	1: "Fifteen",
 	2: "Thirty",
+	3: "Fifty",
 }
 
 func (game TennisGame) Score() string {
-	if game.firstPlayerScoreTimes == 1 || game.firstPlayerScoreTimes == 2 {
+	if game.firstPlayerScoreTimes > 0 {
 		return lookup[game.firstPlayerScoreTimes] + " Love"
 	}
 
