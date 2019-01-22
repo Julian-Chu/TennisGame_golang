@@ -17,6 +17,13 @@ func Test_FifteenLove(t *testing.T) {
 	ScoreShouldBe(t, "Fifteen Love", g)
 }
 
+func Test_ThirtyLove(t *testing.T) {
+	g := NewGame()
+	g.FirstPlayerScore()
+	g.FirstPlayerScore()
+	ScoreShouldBe(t, "Thirty Love", g)
+}
+
 func ScoreShouldBe(t *testing.T, expected string, g *tennisgame.TennisGame) bool {
 	return assert.Equal(t, expected, g.Score(), "")
 }
