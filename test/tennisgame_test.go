@@ -83,6 +83,13 @@ func Test_Deuce44(t *testing.T) {
 	ScoreShouldBe(t, "Deuce", g)
 }
 
+func Test_FirstPlayerWin(t *testing.T) {
+	g := NewGame()
+	GivenFirstPlayerScore(g, 4)
+	GivenSecondPlayerScore(g, 2)
+	ScoreShouldBe(t, "Joey Win", g)
+}
+
 func GivenSecondPlayerScore(g *tennisgame.TennisGame, times int) {
 	for i := 0; i < times; i++ {
 		g.SecondPlayerScore()

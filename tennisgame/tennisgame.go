@@ -31,6 +31,7 @@ func (g TennisGame) Score() string {
 			if math.Abs(float64(g.firstPlayerScoreTimes-g.secondPlayerScoreTimes)) == 1 {
 				return player + " Adv"
 			}
+			return player + " Win"
 		}
 		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
 	}
