@@ -69,6 +69,13 @@ func Test_FirstPlayerAdv(t *testing.T) {
 	ScoreShouldBe(t, "Joey Adv", g)
 }
 
+func Test_SecondPlayerAdv(t *testing.T) {
+	g := NewGame()
+	GivenFirstPlayerScore(g, 3)
+	GivenSecondPlayerScore(g, 4)
+	ScoreShouldBe(t, "Tom Adv", g)
+}
+
 func GivenSecondPlayerScore(g *tennisgame.TennisGame, times int) {
 	for i := 0; i < times; i++ {
 		g.SecondPlayerScore()

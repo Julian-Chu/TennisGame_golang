@@ -1,5 +1,7 @@
 package tennisgame
 
+import "math"
+
 type TennisGame struct {
 	firstPlayerScoreTimes  int
 	secondPlayerScoreTimes int
@@ -21,9 +23,13 @@ var lookup = map[int]string{
 
 func (g TennisGame) Score() string {
 	if g.firstPlayerScoreTimes != g.secondPlayerScoreTimes {
-		if g.firstPlayerScoreTimes > 3 {
-			if g.firstPlayerScoreTimes-g.secondPlayerScoreTimes == 1 {
-				return g.firstPlayerName + " Adv"
+		player := g.firstPlayerName
+		if g.firstPlayerScoreTimes < g.secondPlayerScoreTimes {
+			player = g.secondPlayerName
+		}
+		if g.firstPlayerScoreTimes > 3 || g.secondPlayerScoreTimes > 3 {
+			if math.Abs(float64(g.firstPlayerScoreTimes-g.secondPlayerScoreTimes)) == 1 {
+				return player + " Adv"
 			}
 		}
 		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
