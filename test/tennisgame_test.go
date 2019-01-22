@@ -37,9 +37,14 @@ func Test_LoveFifteen(t *testing.T) {
 
 func Test_LoveThirty(t *testing.T) {
 	g := NewGame()
-	g.SecondPlayerScore()
-	g.SecondPlayerScore()
+	GivenSecondPlayerScore(g, 2)
 	ScoreShouldBe(t, "Love Thirty", g)
+}
+
+func GivenSecondPlayerScore(g *tennisgame.TennisGame, times int) {
+	for i := 0; i < times; i++ {
+		g.SecondPlayerScore()
+	}
 }
 
 func GivenFirstPlayerScore(g *tennisgame.TennisGame, times int) {
