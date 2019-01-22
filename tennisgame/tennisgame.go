@@ -35,7 +35,7 @@ func (g TennisGame) Score() string {
 		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
 	}
 
-	if g.firstPlayerScoreTimes == 3 {
+	if g.firstPlayerScoreTimes >= 3 {
 		return "Deuce"
 	}
 	return lookup[g.firstPlayerScoreTimes] + " All"
