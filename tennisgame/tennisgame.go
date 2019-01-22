@@ -22,25 +22,66 @@ var lookup = map[int]string{
 }
 
 func (g TennisGame) Score() string {
-	if g.firstPlayerScoreTimes != g.secondPlayerScoreTimes {
-		player := g.firstPlayerName
-		if g.firstPlayerScoreTimes < g.secondPlayerScoreTimes {
-			player = g.secondPlayerName
-		}
-		if g.firstPlayerScoreTimes > 3 || g.secondPlayerScoreTimes > 3 {
-			if math.Abs(float64(g.firstPlayerScoreTimes-g.secondPlayerScoreTimes)) == 1 {
-				return player + " Adv"
+	if isScoreDifferent(g) {
+		if isReadyForWin(g) {
+			if isAdv(g) {
+				return getAdvPlayer(getPlayer(g))
 			}
-			return player + " Win"
+			return getWinner(getPlayer(g))
 		}
-		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
+		return getNormalScore(g)
 	}
 
-	if g.firstPlayerScoreTimes >= 3 {
-		return "Deuce"
+	if isDeuce(g) {
+		return getDeuce()
+
 	}
+	return getAll(g)
+
+}
+
+func isScoreDifferent(g TennisGame) bool {
+	return g.firstPlayerScoreTimes != g.secondPlayerScoreTimes
+}
+
+func getPlayer(g TennisGame) string {
+	player := g.firstPlayerName
+	if g.firstPlayerScoreTimes < g.secondPlayerScoreTimes {
+		player = g.secondPlayerName
+	}
+	return player
+}
+
+func isReadyForWin(g TennisGame) bool {
+	return g.firstPlayerScoreTimes > 3 || g.secondPlayerScoreTimes > 3
+}
+
+func isAdv(g TennisGame) bool {
+	return math.Abs(float64(g.firstPlayerScoreTimes-g.secondPlayerScoreTimes)) == 1
+}
+
+func getAdvPlayer(player string) string {
+	return player + " Adv"
+}
+
+func getWinner(player string) string {
+	return player + " Win"
+}
+
+func getNormalScore(g TennisGame) string {
+	return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
+}
+
+func isDeuce(g TennisGame) bool {
+	return g.firstPlayerScoreTimes >= 3
+}
+
+func getDeuce() string {
+	return "Deuce"
+}
+
+func getAll(g TennisGame) string {
 	return lookup[g.firstPlayerScoreTimes] + " All"
-
 }
 
 func (g *TennisGame) FirstPlayerScore() {
