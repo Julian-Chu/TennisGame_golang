@@ -6,20 +6,19 @@ type TennisGame struct {
 }
 
 var lookup = map[int]string{
+
+	0: "Love",
 	1: "Fifteen",
 	2: "Thirty",
 	3: "Fifty",
 }
 
 func (g TennisGame) Score() string {
-	if g.firstPlayerScoreTimes > 0 {
-		return lookup[g.firstPlayerScoreTimes] + " Love"
-	}
-	if g.secondPlayerScoreTimes > 0 {
-		return "Love " + lookup[g.secondPlayerScoreTimes]
+	if g.firstPlayerScoreTimes != g.secondPlayerScoreTimes {
+		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
 	}
 
-	return "Love All"
+	return lookup[g.firstPlayerScoreTimes] + " All"
 
 }
 

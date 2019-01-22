@@ -41,6 +41,13 @@ func Test_LoveThirty(t *testing.T) {
 	ScoreShouldBe(t, "Love Thirty", g)
 }
 
+func Test_FifteenAll(t *testing.T) {
+	g := NewGame()
+	GivenFirstPlayerScore(g, 1)
+	GivenSecondPlayerScore(g, 1)
+	ScoreShouldBe(t, "Fifteen All", g)
+}
+
 func GivenSecondPlayerScore(g *tennisgame.TennisGame, times int) {
 	for i := 0; i < times; i++ {
 		g.SecondPlayerScore()
