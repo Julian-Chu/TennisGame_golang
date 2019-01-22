@@ -3,6 +3,12 @@ package tennisgame
 type TennisGame struct {
 	firstPlayerScoreTimes  int
 	secondPlayerScoreTimes int
+	firstPlayerName        string
+	secondPlayerName       string
+}
+
+func NewTennisGame(firstPlayerName string, secondPlayerName string) *TennisGame {
+	return &TennisGame{firstPlayerName: firstPlayerName, secondPlayerName: secondPlayerName}
 }
 
 var lookup = map[int]string{
@@ -15,6 +21,11 @@ var lookup = map[int]string{
 
 func (g TennisGame) Score() string {
 	if g.firstPlayerScoreTimes != g.secondPlayerScoreTimes {
+		if g.firstPlayerScoreTimes > 3 {
+			if g.firstPlayerScoreTimes-g.secondPlayerScoreTimes == 1 {
+				return g.firstPlayerName + " Adv"
+			}
+		}
 		return lookup[g.firstPlayerScoreTimes] + " " + lookup[g.secondPlayerScoreTimes]
 	}
 

@@ -62,6 +62,13 @@ func Test_Deuce(t *testing.T) {
 	ScoreShouldBe(t, "Deuce", g)
 }
 
+func Test_FirstPlayerAdv(t *testing.T) {
+	g := NewGame()
+	GivenFirstPlayerScore(g, 4)
+	GivenSecondPlayerScore(g, 3)
+	ScoreShouldBe(t, "Joey Adv", g)
+}
+
 func GivenSecondPlayerScore(g *tennisgame.TennisGame, times int) {
 	for i := 0; i < times; i++ {
 		g.SecondPlayerScore()
@@ -79,6 +86,6 @@ func ScoreShouldBe(t *testing.T, expected string, g *tennisgame.TennisGame) bool
 }
 
 func NewGame() *tennisgame.TennisGame {
-	g := &tennisgame.TennisGame{}
+	g := tennisgame.NewTennisGame("Joey", "Tom")
 	return g
 }
